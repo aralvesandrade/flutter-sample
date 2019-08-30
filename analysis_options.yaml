@@ -1,0 +1,86 @@
+# Reference : http://dart-lang.github.io/linter/lints/
+
+include: package:pedantic/analysis_options.yaml
+linter:
+  rules:
+
+    # Avoid relative imports for files in lib/.
+    - avoid_relative_lib_imports
+
+    # Cancel instances of dart.async.StreamSubscription.
+    - cancel_subscriptions
+
+    # Close instances of dart.core.Sink.
+    - close_sinks
+
+    # Avoid empty statements.
+    - empty_statements
+
+    # Don't use more than one case with same value.
+    - no_duplicate_case_values
+
+    # Avoid using unnecessary statements.
+    - unnecessary_statements
+
+    # Use valid regular expression syntax.
+    - valid_regexps
+
+    # Use @required.
+    - always_require_non_null_named_parameters
+
+    # Annotate overridden members.
+    - annotate_overrides
+
+    # Don't explicitly initialize variables to null.
+    - avoid_init_to_null
+
+    # Await only futures.
+    - await_only_futures
+
+    # Name types using UpperCamelCase.
+    - camel_case_types
+
+    # Cascade consecutive method invocations on the same reference.
+    - cascade_invocations
+
+    # Use ; instead of {} for empty constructor bodies.
+    - empty_constructor_bodies
+
+    # Name source files using lowercase_with_underscores.
+    - file_names
+
+    # Don't import implementation files from another package.
+    - implementation_imports
+
+    # Don't reassign references to parameters of functions or methods.
+    - parameter_assignments
+
+    # Prefer putting asserts in initializer list.
+    - prefer_asserts_in_initializer_lists
+
+    # Prefer using ??= over testing for null.
+    - prefer_conditional_assignment
+
+    # Prefer typing uninitialized variables and fields.
+    - prefer_typing_uninitialized_variables
+
+    # Sort unnamed constructor declarations first.
+    - sort_unnamed_constructors_first
+
+    # Avoid const keyword.
+    - unnecessary_const
+
+    # Unnecessary new keyword.
+    - unnecessary_new
+
+    # Don't access members with this unless avoiding shadowing.
+    - unnecessary_this
+
+    # Prefer an 8-digit hexadecimal integer(0xFFFFFFFF) to instantiate Color.
+    - use_full_hex_values_for_flutter_colors
+
+    # Use lowercase_with_underscores for package names.
+    - package_names
+
+    # Sort pub dependencies.
+    - sort_pub_dependencies

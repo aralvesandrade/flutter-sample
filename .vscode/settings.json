@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+    ".dart_tool": true,
+    ".idea": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/*.inject.*": true
+  },
+  "dart.analysisExcludedFolders": [
+    "vendor"
+  ],
+  "java.configuration.updateBuildConfiguration": "automatic"
+}

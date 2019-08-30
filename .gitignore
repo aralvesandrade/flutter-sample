@@ -1,3 +1,10 @@
+#Custom
+
+*.inject.dart
+*.inject.summary
+*.g.dart
+**/vendor/*/
+
 # Miscellaneous
 *.class
 *.log
