@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 enum _LKeys {
   title,
+  formUsername,
   formFullName,
   formEmail,
   formPassword,
@@ -15,6 +16,7 @@ class SignUpL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
     L10n.ptBR.toString(): {
       _LKeys.title: "Vamos criar sua conta?",
+      _LKeys.formUsername: "Username",
       _LKeys.formFullName: "Nome e Sobrenome",
       _LKeys.formEmail: "Email",
       _LKeys.formPassword: "Senha",
@@ -24,6 +26,7 @@ class SignUpL10n {
   };
 
   String get title => _localizedValues[locale.toString()][_LKeys.title];
+  String get formUsername => _localizedValues[locale.toString()][_LKeys.formUsername];
   String get formFullName => _localizedValues[locale.toString()][_LKeys.formFullName];
   String get formEmail => _localizedValues[locale.toString()][_LKeys.formEmail];
   String get formPassword => _localizedValues[locale.toString()][_LKeys.formPassword];

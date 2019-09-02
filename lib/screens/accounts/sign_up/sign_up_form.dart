@@ -1,7 +1,7 @@
 import 'dart:io';
+
 import 'package:com_cingulo_sample/common/widget.dart';
 import 'package:com_cingulo_sample/models/accounts/sign_up_model.dart';
-import 'package:com_cingulo_sample/models/accounts/user_model.dart';
 import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
 import 'package:com_cingulo_sample/widgets/components/components.dart';
 import 'package:com_cingulo_sample/widgets/styles/styles.dart';
@@ -19,10 +19,14 @@ class SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n
   @override
   final SignUpFormBloc bloc = SignUpFormBloc();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _fullNameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  UserGender _gender;
+  final FocusNode _fullNameFocus = FocusNode();
+  final FocusNode _emailFocus = FocusNode();
+  final FocusNode _passwordFocus = FocusNode();
+
   bool _isProcessing = false;
   SignUpModelError _signUpModelError;
 
@@ -30,9 +34,13 @@ class SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n
   void initState() {
     super.initState();
     disposableFunctions.addAll([
+      _usernameController.dispose,
       _fullNameController.dispose,
       _emailController.dispose,
       _passwordController.dispose,
+      _fullNameFocus.dispose,
+      _emailFocus.dispose,
+      _passwordFocus.dispose,
     ]);
     bloc.states$.listen(_onData, onError: _onError);
   }
@@ -57,7 +65,7 @@ class SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n
         _isProcessing = true;
         final model = SignUpModel(
           _fullNameController.value.text,
-          _gender,
+          _usernameController.value.text,
           _emailController.value.text,
           _passwordController.value.text,
           SignUpModel.languageCodePtBr,
@@ -77,24 +85,40 @@ class SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           TextInput(
+            labelText: l10n.formUsername,
+            controller: _usernameController,
+            validator: (_) => _signUpModelError?.username,
+            enabled: !_isProcessing,
+            textInputAction: TextInputAction.next,
+            onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_fullNameFocus),
+          ),
+          TextInput(
+            focusNode: _fullNameFocus,
             labelText: l10n.formFullName,
             controller: _fullNameController,
             validator: (_) => _signUpModelError?.fullName,
             enabled: !_isProcessing,
+            textInputAction: TextInputAction.next,
+            onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_emailFocus),
           ),
-          GenderInput(onChanged: (UserGender gender) => _gender = gender),
           TextInput(
+            focusNode: _emailFocus,
             labelText: l10n.formEmail,
             keyboardType: TextInputType.emailAddress,
             controller: _emailController,
             validator: (_) => _signUpModelError?.email,
             enabled: !_isProcessing,
+            textInputAction: TextInputAction.next,
+            onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_passwordFocus),
           ),
           PasswordInput(
+            focusNode: _passwordFocus,
             labelText: l10n.formPassword,
             controller: _passwordController,
             validator: (_) => _signUpModelError?.password,
             enabled: !_isProcessing,
+            textInputAction: TextInputAction.done,
+            onFieldSubmitted: (_) => _onSubmit(),
           ),
           _signUpModelError?.generic == null
               ? Container()

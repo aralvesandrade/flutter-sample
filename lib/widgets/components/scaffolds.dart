@@ -15,7 +15,7 @@ class FadedBlueScaffold extends Scaffold {
 }
 
 class FadedBlueAppBar extends StatelessWidget implements PreferredSizeWidget {
-  static const double height = 128;
+  static const double height = 56;
   final bool showBackButton;
   final String title;
 
@@ -34,8 +34,7 @@ class FadedBlueAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Stack(
           alignment: AlignmentDirectional.center,
           children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(bottom: 30),
+            Center(
               child: Text(
                 title,
                 style: TextStyles.SerifSubheadingNegative,
@@ -44,12 +43,13 @@ class FadedBlueAppBar extends StatelessWidget implements PreferredSizeWidget {
             !showBackButton
                 ? Container()
                 : Positioned(
-                    top: 22,
+                    top: 0,
                     left: 9,
+                    bottom: 0,
                     child: IconButton(
                       icon: Icon(
                         Icons.arrow_back,
-                        size: 54,
+                        size: 24,
                         color: AppColor.white,
                       ),
                       onPressed: () => AppRouter.router.pop(context),
