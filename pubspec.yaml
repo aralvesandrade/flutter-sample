@@ -4,7 +4,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   analyzer: ^0.34.0
@@ -29,6 +29,18 @@ dependencies:
   # Bloc implementation
   rxdart: ^0.22.0
 
+  # Network call
+  dio: ^2.1.7
+
+  # Local storage
+  shared_preferences: ^0.5.3
+
+  # Access an external url by browser
+  url_launcher: ^5.1.1
+
+  # Distach share intent
+  share: ^0.6.2+1
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
@@ -39,7 +51,6 @@ dev_dependencies:
   inject_generator:
     path: ./vendor/inject.dart/package/inject_generator
 
-# The following section is specific to Flutter.
 flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

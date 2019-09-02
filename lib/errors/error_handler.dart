@@ -1,5 +1,6 @@
 import 'package:com_cingulo_sample/app/app.dart';
 import 'package:com_cingulo_sample/app/app_di.dart';
+import 'package:com_cingulo_sample/common/analytics.dart';
 import 'package:com_cingulo_sample/errors/model_error.dart';
 import 'package:com_cingulo_sample/errors/unauthenticated_error.dart';
 import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
@@ -13,7 +14,7 @@ class ErrorHandler {
       // Skip
     } else {
       // TODO: Add offline service
-      // TODO: Add anaitycs
+      Analytics.nonFatalError(error, stackTrace, context: 'ErrorHandler.handle');
     }
   }
 

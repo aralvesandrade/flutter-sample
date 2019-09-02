@@ -26,7 +26,10 @@ class Env {
     debugShowCheckedModeBanner: true,
     debugShowMaterialGrid: true,
     debugApiClient: true,
-    apiBaseUrl: 'http://api-dev.cingulo.com',
+    apiBaseUrl: 'https://api-sample.cingulo.com',
+    // apiBaseUrl: 'http://localhost:8000',
+    playStoreUrl: '',
+    appStoreUrl: '',
   );
 
   static final EnvData prod = EnvData(
@@ -34,7 +37,9 @@ class Env {
     debugShowCheckedModeBanner: false,
     debugShowMaterialGrid: false,
     debugApiClient: false,
-    apiBaseUrl: 'https://api.cingulo.com',
+    apiBaseUrl: 'https://api-sample.cingulo.com',
+    playStoreUrl: '',
+    appStoreUrl: '',
   );
 }
 
@@ -44,6 +49,8 @@ class EnvData {
   final bool debugShowMaterialGrid;
   final bool debugApiClient;
   final String apiBaseUrl;
+  final String playStoreUrl;
+  final String appStoreUrl;
 
   EnvData({
     @required this.debug,
@@ -51,5 +58,7 @@ class EnvData {
     @required this.debugShowMaterialGrid,
     @required this.debugApiClient,
     @required this.apiBaseUrl,
+    @required this.playStoreUrl,
+    @required this.appStoreUrl,
   });
 }

@@ -3,6 +3,7 @@ import 'package:com_cingulo_sample/app/app_router.dart';
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:com_cingulo_sample/env.dart';
 import 'package:com_cingulo_sample/screens/splash/splash_screen.dart';
+import 'package:com_cingulo_sample/widgets/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -24,8 +25,8 @@ class App extends StatelessWidget {
 
   ThemeData _themeData() {
     return ThemeData(
-      scaffoldBackgroundColor: Colors.white,
-      unselectedWidgetColor: Colors.blueAccent,
+      scaffoldBackgroundColor: AppColor.white,
+      unselectedWidgetColor: AppColor.tea,
       buttonTheme: ButtonThemeData(
         height: 40,
         padding: EdgeInsets.symmetric(horizontal: 16),

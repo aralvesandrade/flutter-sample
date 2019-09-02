@@ -1,4 +1,7 @@
 import 'package:com_cingulo_sample/common/l10n.dart';
+import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_l10n.dart';
+import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_l10n.dart';
+import 'package:com_cingulo_sample/widgets/components/components_l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -29,6 +32,9 @@ class AppL10n {
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
     _AppL10nDelegate(),
+    ...ComponentsL10n.delegates,
+    SignUpL10n.delegate,
+    LogInL10n.delegate,
   ];
 }
 

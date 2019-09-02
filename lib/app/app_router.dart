@@ -1,3 +1,6 @@
+import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_router.dart';
+import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_router.dart';
+import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
 import 'package:fluro/fluro.dart';
 
 class AppRouter {
@@ -13,5 +16,8 @@ class AppRouter {
 
   static void _initialize() {
     _initialized = true;
+    LogInRouter(_router);
+    SplashRouter(_router);
+    SignUpRouter(_router);
   }
 }
