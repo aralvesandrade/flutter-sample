@@ -8,7 +8,7 @@ class AuthInterceptor extends Interceptor {
     final permission = await di.authRepository.getPermission();
     if (permission.isAuthenticated) {
       final authToken = await di.authRepository.getToken();
-      options.headers['Authorization'] = 'JWT ${authToken.token}';
+      options.headers['Authorization'] = 'Bearer ${authToken.token}';
     }
     return options;
   }

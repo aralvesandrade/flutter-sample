@@ -18,8 +18,8 @@ class ApiClient {
   @singleton
   ApiClient(this._apiDio) {
     _apiDio.options.baseUrl = Env.data.apiBaseUrl;
-    _apiDio.options.connectTimeout = Duration(seconds: 10).inMilliseconds;
-    _apiDio.options.receiveTimeout = Duration(seconds: 10).inMilliseconds;
+    _apiDio.options.connectTimeout = Duration(minutes: 3).inMilliseconds;
+    _apiDio.options.receiveTimeout = Duration(minutes: 3).inMilliseconds;
     _apiDio.interceptors.add(InternalServerErrorInterceptor());
     _apiDio.interceptors.add(AuthInterceptor());
     _apiDio.interceptors.add(NotFoundErrorInterceptor()); // Must be before BadRequestInterceptor.

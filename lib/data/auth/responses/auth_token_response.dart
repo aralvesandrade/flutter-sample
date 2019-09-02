@@ -3,5 +3,5 @@ class AuthTokenResponse {
 
   AuthTokenResponse(this.token);
 
-  AuthTokenResponse.fromJson(Map<String, dynamic> json) : token = json['token'];
+  AuthTokenResponse.fromJson(Map<String, dynamic> json) : token = json['access_token'];
 }
