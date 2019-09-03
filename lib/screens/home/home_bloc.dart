@@ -3,10 +3,13 @@ import 'package:com_cingulo_sample/models/todo/todo_lists_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HomeBloc extends Bloc<HomeBlocState> {
-  HomeBloc() : super(states$$: BehaviorSubject<HomeBlocState>.seeded(HomeBlocLoading()));
+  HomeBloc() : super(states$$: PublishSubject<HomeBlocState>());
 
   @override
-  void postInit() {
+  void postInit() => refresh();
+
+  void refresh() {
+    states$$.add(HomeBlocLoading());
     catchError(() async {
       final response = await di.todoRepository.getTodoList();
       if (response.list.isEmpty) {

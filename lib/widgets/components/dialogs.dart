@@ -26,6 +26,26 @@ class DialogAlert extends AlertDialog {
   }
 }
 
+class DialogDynamic extends AlertDialog {
+  static void show({
+    String title,
+    @required BuildContext context,
+    @required Widget content,
+    @required List<Widget> actions,
+  }) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+            title: title == null ? null : Text(title, style: TextStyles.SansBoldSubheading),
+            content: content,
+            actions: actions,
+          );
+        });
+  }
+}
+
 class DialogUnknownError extends ModalRoute<void> {
   @override
   Duration get transitionDuration => Duration(milliseconds: 500);
