@@ -12,13 +12,13 @@ class AuthTokenMapper {
 
   static AuthTokenModel stringToModel(String token) {
     final parsed = _parseJwt(token);
-    final userId = parsed.containsKey('user_id') ? parsed['user_id'] : 0;
+    final userId = parsed.containsKey('user_id') ? parsed['user_id'] : "";
     return AuthTokenModel(token, userId);
   }
 
   static AuthTokenModel responseToModel(AuthTokenResponse response) {
     final parsed = _parseJwt(response.token);
-    final userId = parsed.containsKey('user_id') ? parsed['user_id'] : 0;
+    final userId = parsed.containsKey('user_id') ? parsed['user_id'] : "";
     return AuthTokenModel(response.token, userId);
   }
 

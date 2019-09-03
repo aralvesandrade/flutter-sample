@@ -2,7 +2,7 @@ import 'package:com_cingulo_sample/errors/model_error.dart';
 
 class AuthTokenModel {
   final String token;
-  final int userId;
+  final String userId;
 
   AuthTokenModel(this.token, this.userId);
 }
