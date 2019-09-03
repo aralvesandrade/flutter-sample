@@ -1,6 +1,7 @@
 import 'package:com_cingulo_sample/data/accounts/accounts_repository.dart';
 import 'package:com_cingulo_sample/data/auth/auth_repository.dart';
 import 'package:com_cingulo_sample/data/core/core_repository.dart';
+import 'package:com_cingulo_sample/data/todo/todo_repository.dart';
 import 'package:inject/inject.dart';
 
 import 'app_di.inject.dart' as $gid;
@@ -12,6 +13,8 @@ abstract class AppDi {
   AuthRepository get authRepository;
 
   AccountsRepository get accountsRepository;
+
+  TodoRepository get todoRepository;
 
   static Future<AppDi> _created;
   static void reset() => _created = null;

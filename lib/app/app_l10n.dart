@@ -1,6 +1,7 @@
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_l10n.dart';
 import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_l10n.dart';
+import 'package:com_cingulo_sample/screens/home/home_l10n.dart';
 import 'package:com_cingulo_sample/widgets/components/components_l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ class AppL10n {
     ...ComponentsL10n.delegates,
     SignUpL10n.delegate,
     LogInL10n.delegate,
+    HomeL10n.delegate,
   ];
 }
 

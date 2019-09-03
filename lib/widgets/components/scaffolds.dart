@@ -3,6 +3,24 @@ import 'package:com_cingulo_sample/widgets/styles/colors.dart';
 import 'package:com_cingulo_sample/widgets/styles/styles.dart';
 import 'package:flutter/material.dart';
 
+class ActionScaffold extends Scaffold {
+  ActionScaffold({
+    @required String title,
+    @required List<Widget> actions,
+    @required Widget body,
+    @required Widget floatingActionButton,
+  }) : super(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: Color(0xff256CB3),
+            title: Text(title),
+            actions: actions,
+          ),
+          body: body,
+          floatingActionButton: floatingActionButton,
+        );
+}
+
 class FadedBlueScaffold extends Scaffold {
   FadedBlueScaffold({
     @required bool showBackButton,
