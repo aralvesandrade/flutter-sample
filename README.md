@@ -1,16 +1,27 @@
-# com_cingulo_sample
+Sample Flutter 
+========
 
-A new Flutter project.
+A flutter implementation with network call, error handling, streams, and BloC.
 
-## Getting Started
+API Docs
+========
 
-This project is a starting point for a Flutter application.
+Open `the docs URL <https://api-sample.cingulo.com/docs/>`_ in your browser. Or if you want take a look at API `code <https://github.com/cingulo/api-sample>`.
 
-A few resources to get you started if this is your first Flutter project:
+Setup
+========
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+It's using `Google Inject library <https://github.com/google/inject.dart>` then it's necessary to download all submodules 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- If you are starting from scratch
+
+```
+    $ git clone --recurse-submodules -j8 https://github.com/cingulo/cingulo-app-flutter.git
+```
+
+- If you already clone but doent see submodules
+
+```
+    $ git submodule init
+    $ git submodule update
+```
