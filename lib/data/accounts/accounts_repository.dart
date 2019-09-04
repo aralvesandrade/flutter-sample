@@ -31,4 +31,9 @@ class AccountsRepository {
     await _authRepository.saveToken(authToken); // Will call onAuthPermission()
     AppDi.reset();
   }
+
+  Future<void> logOut() async {
+    await _authRepository.deleteToken();
+    AppDi.reset();
+  }
 }

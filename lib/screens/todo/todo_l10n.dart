@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 enum _LKeys {
   title,
   emptyMessage,
+  logOut,
 }
 
 class TodoL10n {
@@ -17,15 +18,18 @@ class TodoL10n {
     L10n.ptBR.toString(): {
       _LKeys.title: "Sample",
       _LKeys.emptyMessage: "Vamos começar criando uma lista de tarefas!",
+      _LKeys.logOut: "LogOut",
     },
     L10n.enUS.toString(): {
       _LKeys.title: "Sample",
       _LKeys.emptyMessage: "Let's start creating a Todo list!",
+      _LKeys.logOut: "LogOut",
     }
   };
 
   String get title => _localizedValues[locale.toString()][_LKeys.title];
   String get emptyMessage => _localizedValues[locale.toString()][_LKeys.emptyMessage];
+  String get logOut => _localizedValues[locale.toString()][_LKeys.logOut];
 
   static const List<LocalizationsDelegate<dynamic>> delegates = [
     _TodoL10nDelegate(),

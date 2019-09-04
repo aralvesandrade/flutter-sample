@@ -1,5 +1,6 @@
 import 'package:com_cingulo_sample/common/widget.dart';
 import 'package:com_cingulo_sample/models/todo/todo_lists_model.dart';
+import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
 import 'package:com_cingulo_sample/screens/todo/todo_bloc.dart';
 import 'package:com_cingulo_sample/screens/todo/todo_create/todo_create_router.dart';
 import 'package:com_cingulo_sample/screens/todo/todo_l10n.dart';
@@ -46,9 +47,15 @@ class TodoScreenState extends StatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
 
   List<Widget> _actions() {
     return <Widget>[
-      IconButton(
-        icon: Icon(Icons.settings),
-        onPressed: () {},
+      FlatButton(
+        child: Text(
+          l10n.logOut,
+          style: TextStyles.SansMedium,
+        ),
+        onPressed: () async {
+          await bloc.logOut();
+          SplashRouter.navigate(context);
+        },
       ),
     ];
   }

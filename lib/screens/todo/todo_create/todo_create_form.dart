@@ -49,6 +49,7 @@ class TodoCreateFormState extends StatefulWBL<TodoCreateForm, TodoCreateFormBloc
   void _onError(Object error) => setState(() {
         _isProcessing = false;
         _errorModel = error is TodoListsCreateModelError ? error : null;
+        _formKey.currentState.validate();
       });
 
   void _onSubmit() {

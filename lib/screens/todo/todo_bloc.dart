@@ -11,7 +11,7 @@ class TodoBloc extends Bloc<TodoBlocState> {
     await _refresh();
   }
 
-  Future _refresh([_]) async {
+  Future<void> _refresh([_]) async {
     catchError(() async {
       final response = await di.todoRepository.getTodoList();
       if (response.list.isEmpty) {
@@ -20,6 +20,10 @@ class TodoBloc extends Bloc<TodoBlocState> {
         states$$.add(TodoBlocLoaded(response));
       }
     });
+  }
+
+  Future<void> logOut() async {
+    await di.accountsRepository.logOut();
   }
 }
 
