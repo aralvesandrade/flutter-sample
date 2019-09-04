@@ -1,7 +1,9 @@
 import 'package:com_cingulo_sample/app/app_router.dart';
+import 'package:com_cingulo_sample/widgets/components/components.dart';
 import 'package:com_cingulo_sample/widgets/styles/colors.dart';
 import 'package:com_cingulo_sample/widgets/styles/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ActionScaffold extends Scaffold {
   ActionScaffold({
@@ -117,6 +119,175 @@ class FadedBlueHeroContainer extends StatelessWidget {
                     ),
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class HeadingButtonsScaffold extends StatefulWidget {
+  final String title;
+  final String leftButtonText;
+  final Function() leftButtonOnPressed;
+  final String rightButtonText;
+  final Function() rightButtonOnPressed;
+  final Widget body;
+  final Color backgroundColor;
+
+  HeadingButtonsScaffold({
+    @required this.title,
+    @required this.leftButtonText,
+    @required this.rightButtonText,
+    @required this.body,
+    this.leftButtonOnPressed,
+    this.rightButtonOnPressed,
+    this.backgroundColor = AppColor.white,
+  });
+
+  @override
+  State<StatefulWidget> createState() => HeadingButtonsScaffoldState();
+}
+
+class HeadingButtonsScaffoldState extends State<HeadingButtonsScaffold> {
+  PublishSubject<void> _leftButtonOnPressed$ = PublishSubject<void>();
+  PublishSubject<void> _rightButtonOnPressed$ = PublishSubject<void>();
+  bool _disabled = false;
+
+  @override
+  void dispose() {
+    _leftButtonOnPressed$.close();
+    _leftButtonOnPressed$ = null;
+    _rightButtonOnPressed$.close();
+    _rightButtonOnPressed$ = null;
+    super.dispose();
+  }
+
+  void _setDisabled(bool disabled) {
+    setState(() => _disabled = disabled);
+  }
+
+  void _leftButtonOnPressed() {
+    _leftButtonOnPressed$.add(null);
+    if (widget.leftButtonOnPressed != null) {
+      widget.leftButtonOnPressed();
+    }
+  }
+
+  void _rightButtonOnPressed() {
+    _rightButtonOnPressed$.add(null);
+    if (widget.rightButtonOnPressed != null) {
+      widget.rightButtonOnPressed();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return HeadingButtons(
+      leftButtonOnPressed: _leftButtonOnPressed$.stream,
+      rightButtonOnPressed: _rightButtonOnPressed$.stream,
+      setDisabled: _setDisabled,
+      child: Scaffold(
+        backgroundColor: widget.backgroundColor,
+        appBar: HeadingButtonsAppBar(
+          title: widget.title,
+          leftButtonText: widget.leftButtonText,
+          leftButtonOnPressed: _leftButtonOnPressed,
+          rightButtonText: widget.rightButtonText,
+          rightButtonOnPressed: _rightButtonOnPressed,
+          disabled: _disabled,
+        ),
+        body: widget.body,
+      ),
+    );
+  }
+}
+
+class HeadingButtons extends InheritedWidget {
+  final Stream<void> leftButtonOnPressed;
+  final Stream<void> rightButtonOnPressed;
+  final Function(bool disabled) setDisabled;
+
+  HeadingButtons({
+    @required this.leftButtonOnPressed,
+    @required this.rightButtonOnPressed,
+    @required this.setDisabled,
+    @required Widget child,
+  }) : super(child: child);
+
+  static HeadingButtons of(BuildContext context) {
+    return context.inheritFromWidgetOfExactType(HeadingButtons) as HeadingButtons;
+  }
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) => true;
+}
+
+class HeadingButtonsAppBar extends StatelessWidget implements PreferredSizeWidget {
+  static const double height = 56;
+  final String title;
+  final String leftButtonText;
+  final Function() leftButtonOnPressed;
+  final String rightButtonText;
+  final Function() rightButtonOnPressed;
+  final bool disabled;
+
+  HeadingButtonsAppBar({
+    @required this.title,
+    @required this.leftButtonText,
+    @required this.leftButtonOnPressed,
+    @required this.rightButtonText,
+    @required this.rightButtonOnPressed,
+    this.disabled = false,
+  });
+
+  @override
+  Size get preferredSize => Size.fromHeight(height);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColor.white,
+      child: SafeArea(
+        child: Stack(
+          children: <Widget>[
+            Center(
+              child: Container(
+                padding: EdgeInsets.only(bottom: 2),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: AppColor.battleshipGrey,
+                    fontSize: 14,
+                    fontFamily: "Roboto-Regular",
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 7.5,
+              left: 0,
+              child: ButtonWhiteSoft(
+                text: leftButtonText,
+                onPressed: leftButtonOnPressed,
+                disabled: disabled,
+              ),
+            ),
+            Positioned(
+              top: 7.5,
+              right: 0,
+              child: ButtonWhite(
+                text: rightButtonText,
+                onPressed: rightButtonOnPressed,
+                disabled: disabled,
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: DividerLine(),
+            )
           ],
         ),
       ),

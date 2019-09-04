@@ -1,25 +1,24 @@
-import 'package:com_cingulo_sample/app/app_router.dart';
 import 'package:com_cingulo_sample/common/widget.dart';
 import 'package:com_cingulo_sample/models/todo/todo_lists_model.dart';
-import 'package:com_cingulo_sample/screens/home/home_bloc.dart';
-import 'package:com_cingulo_sample/screens/home/home_l10n.dart';
+import 'package:com_cingulo_sample/screens/todo/todo_bloc.dart';
+import 'package:com_cingulo_sample/screens/todo/todo_create/todo_create_router.dart';
+import 'package:com_cingulo_sample/screens/todo/todo_l10n.dart';
 import 'package:com_cingulo_sample/widgets/components/cards.dart';
 import 'package:com_cingulo_sample/widgets/components/components.dart';
-import 'package:com_cingulo_sample/widgets/components/dialogs.dart';
 import 'package:com_cingulo_sample/widgets/styles/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
+class TodoScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return HomeScreenState();
+    return TodoScreenState();
   }
 }
 
-class HomeScreenState extends StatefulWBL<HomeScreen, HomeBloc, HomeL10n> {
+class TodoScreenState extends StatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
   @override
-  HomeBloc bloc = HomeBloc();
+  TodoBloc bloc = TodoBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +31,9 @@ class HomeScreenState extends StatefulWBL<HomeScreen, HomeBloc, HomeL10n> {
         body: StreamBuilder(
           stream: bloc.states$,
           builder: (context, snapshot) {
-            if (snapshot.data is HomeBlocLoaded) {
+            if (snapshot.data is TodoBlocLoaded) {
               return _body(snapshot.data);
-            } else if (snapshot.data is HomeBlocEmpty) {
+            } else if (snapshot.data is TodoBlocEmpty) {
               return _empty();
             } else {
               return Center(child: Loading());
@@ -58,35 +57,7 @@ class HomeScreenState extends StatefulWBL<HomeScreen, HomeBloc, HomeL10n> {
     return FloatingActionButton(
       child: Icon(Icons.add),
       backgroundColor: AppColor.tea,
-      onPressed: _openNewTodoListDialog,
-    );
-  }
-
-  void _openNewTodoListDialog() {
-    TextEditingController controller = TextEditingController();
-    void submit([_]) {
-      print(controller.text);
-    }
-
-    DialogDynamic.show(
-      context: context,
-      title: l10n.dialogTitle,
-      content: TextInput(
-        labelText: l10n.dialogInputLabel,
-        controller: controller,
-        textInputAction: TextInputAction.done,
-        onFieldSubmitted: submit,
-      ),
-      actions: [
-        ButtonWhite(
-          text: l10n.dialogCancelButton,
-          onPressed: () => AppRouter.router.pop(context),
-        ),
-        ButtonPrimary(
-          text: l10n.dialogConfirmButton,
-          onPressed: submit,
-        )
-      ],
+      onPressed: () => TodoCreateRouter.navigate(context),
     );
   }
 
@@ -96,7 +67,7 @@ class HomeScreenState extends StatefulWBL<HomeScreen, HomeBloc, HomeL10n> {
     );
   }
 
-  Widget _body(HomeBlocLoaded state) {
+  Widget _body(TodoBlocLoaded state) {
     return ListView(
       children: <Widget>[
         ...state.result.list.map((item) => _item(item)).toList(),
@@ -106,7 +77,15 @@ class HomeScreenState extends StatefulWBL<HomeScreen, HomeBloc, HomeL10n> {
 
   Widget _item(TodoListsModel item) {
     return CardRegular(
-      child: Text(item.name),
+      margin: EdgeInsets.all(Dimens.defaultBodyMargin),
+      child: Container(
+        padding: EdgeInsets.all(Dimens.defaultBodyMargin),
+        color: AppColor.blueGrey,
+        child: Text(
+          item.name,
+          style: TextStyles.SansRegularNegative,
+        ),
+      ),
     );
   }
 }

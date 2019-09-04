@@ -24,7 +24,7 @@ class Env {
   static final EnvData dev = EnvData(
     debug: true,
     debugShowCheckedModeBanner: true,
-    debugShowMaterialGrid: true,
+    debugShowMaterialGrid: false,
     debugApiClient: true,
     apiBaseUrl: 'https://api-sample.cingulo.com',
     // apiBaseUrl: 'http://localhost:8000',

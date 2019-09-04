@@ -16,7 +16,7 @@ class TodoApi {
   }
 
   Future<TodoListsResponse> createList(TodoListsCreateRequest request, Function badRequestToModelError) async {
-    final response = await _apiClient.post('/todo/lists/', request.toJson, badRequestToModelError);
+    final response = await _apiClient.post('/todo/lists/', request.toJson(), badRequestToModelError);
     return TodoListsResponse.fromJson(response.data);
   }
 }
