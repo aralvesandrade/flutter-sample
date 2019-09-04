@@ -16,7 +16,7 @@ It's using <a href="https://github.com/google/inject.dart"> Google Inject librar
 - If you are starting from scratch
 
 ```
-    $ git clone --recurse-submodules -j8 https://github.com/cingulo/cingulo-app-flutter.git
+    $ git clone --recurse-submodules -j8 https://github.com/cingulo/flutter-sample.git
 ```
 
 - If you already clone but doent see submodules
