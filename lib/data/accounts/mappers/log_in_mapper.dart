@@ -4,13 +4,13 @@ import 'package:com_cingulo_sample/models/accounts/log_in_model.dart';
 
 class LogInMapper {
   static LogInRequest modelToRequest(LogInModel model) {
-    return LogInRequest(model.email, model.password);
+    return LogInRequest(username: model.username, password: model.password);
   }
 
   static LogInModelError badRequestToModelError(BadRequestError error) {
     return LogInModelError(
       generic: error.generic(),
-      email: error.key('email'),
+      username: error.key('username'),
       password: error.key('password'),
     );
   }

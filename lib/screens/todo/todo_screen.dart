@@ -1,97 +1,89 @@
 import 'package:com_cingulo_sample/common/widget.dart';
-import 'package:com_cingulo_sample/models/todo/todo_lists_model.dart';
-import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
+import 'package:com_cingulo_sample/models/todo/task_model.dart';
+import 'package:com_cingulo_sample/screens/settings/settings_router.dart';
+import 'package:com_cingulo_sample/screens/todo/add_task/add_task_dialog.dart';
+import 'package:com_cingulo_sample/screens/todo/edit_task/edit_task_router.dart';
 import 'package:com_cingulo_sample/screens/todo/todo_bloc.dart';
-import 'package:com_cingulo_sample/screens/todo/todo_create/todo_create_router.dart';
 import 'package:com_cingulo_sample/screens/todo/todo_l10n.dart';
-import 'package:com_cingulo_sample/widgets/components/cards.dart';
-import 'package:com_cingulo_sample/widgets/components/components.dart';
-import 'package:com_cingulo_sample/widgets/styles/styles.dart';
+import 'package:com_cingulo_sample/widgets/loaders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class TodoScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return TodoScreenState();
-  }
+  State<StatefulWidget> createState() => _TodoScreenState();
 }
 
-class TodoScreenState extends StatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
+class _TodoScreenState extends StatefulWBL<TodoScreen, TodoBloc, TodoL10n> {
   @override
-  TodoBloc bloc = TodoBloc();
+  final TodoBloc bloc = TodoBloc();
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
-      child: ActionScaffold(
-        title: l10n.title,
-        actions: _actions(),
-        floatingActionButton: _floatingActionButton(),
+      child: Scaffold(
+        appBar: _appBar(),
         body: StreamBuilder(
           stream: bloc.states$,
           builder: (context, snapshot) {
-            if (snapshot.data is TodoBlocLoaded) {
-              return _body(snapshot.data);
-            } else if (snapshot.data is TodoBlocEmpty) {
-              return _empty();
-            } else {
-              return Center(child: Loading());
+            if (snapshot.data is TodoBlocData) {
+              final tasks = (snapshot.data as TodoBlocData).tasks;
+              return tasks.isEmpty ? _empty() : _tasks(tasks);
             }
+            return Loading();
           },
         ),
+        floatingActionButton: _addTaskButton(),
       ),
     );
   }
 
-  List<Widget> _actions() {
-    return <Widget>[
-      FlatButton(
-        child: Text(
-          l10n.logOut,
-          style: TextStyles.SansMedium,
-        ),
-        onPressed: () async {
-          await bloc.logOut();
-          SplashRouter.navigate(context);
-        },
-      ),
-    ];
-  }
-
-  Widget _floatingActionButton() {
-    return FloatingActionButton(
-      child: Icon(Icons.add),
-      backgroundColor: AppColor.tea,
-      onPressed: () => TodoCreateRouter.navigate(context),
+  Widget _appBar() {
+    return AppBar(
+      title: Text(l10n.title),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.settings),
+          onPressed: () => SettingsRouter.navigate(context),
+        )
+      ],
     );
   }
 
   Widget _empty() {
     return Center(
-      child: Text(l10n.emptyMessage),
+      child: Text(l10n.empty),
     );
   }
 
-  Widget _body(TodoBlocLoaded state) {
+  Widget _tasks(List<TaskModel> tasks) {
     return ListView(
-      children: <Widget>[
-        ...state.result.list.map((item) => _item(item)).toList(),
-      ],
+      children: tasks.map((task) => _task(task)).toList(),
     );
   }
 
-  Widget _item(TodoListsModel item) {
-    return CardRegular(
-      margin: EdgeInsets.all(Dimens.defaultBodyMargin),
-      child: Container(
-        padding: EdgeInsets.all(Dimens.defaultBodyMargin),
-        color: AppColor.blueGrey,
-        child: Text(
-          item.name,
-          style: TextStyles.SansRegularNegative,
+  Widget _task(TaskModel task) {
+    return Card(
+      child: GestureDetector(
+        onTap: () => EditTaskRouter.navigate(context, task.id),
+        child: ListTile(
+          title: Text(task.name),
+          subtitle: task.notes == null ? null : task.notes.isEmpty ? null : Text(task.notes),
+          trailing: task.done ? Icon(Icons.check, color: Colors.green) : null,
         ),
+      ),
+    );
+  }
+
+  Widget _addTaskButton() {
+    return FloatingActionButton(
+      child: Icon(Icons.add),
+      backgroundColor: Theme.of(context).primaryColor,
+      onPressed: () => showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => AddTaskDialog(),
       ),
     );
   }

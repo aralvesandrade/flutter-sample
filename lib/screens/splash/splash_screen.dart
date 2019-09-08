@@ -1,17 +1,17 @@
 import 'package:com_cingulo_sample/common/widget.dart';
-import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_router.dart';
+import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_router.dart';
 import 'package:com_cingulo_sample/screens/splash/splash_bloc.dart';
 import 'package:com_cingulo_sample/screens/todo/todo_router.dart';
-import 'package:com_cingulo_sample/widgets/components/loaders.dart';
+import 'package:com_cingulo_sample/widgets/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => SplashScreenState();
+  State<StatefulWidget> createState() => _SplashScreenState();
 }
 
-class SplashScreenState extends StatefulWB<SplashScreen, SplashBloc> {
+class _SplashScreenState extends StatefulWB<SplashScreen, SplashBloc> {
   @override
   final SplashBloc bloc = SplashBloc();
 
@@ -25,16 +25,14 @@ class SplashScreenState extends StatefulWB<SplashScreen, SplashBloc> {
     if (state is SplashBlocAuthenticated) {
       TodoRouter.navigate(context);
     } else if (state is SplashBlocUnauthenticated) {
-      LogInRouter.navigate(context);
+      SignUpRouter.navigate(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Loading(),
-      ),
+      body: Loading(),
     );
   }
 }

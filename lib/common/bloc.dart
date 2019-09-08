@@ -1,6 +1,4 @@
 import 'package:com_cingulo_sample/common/dependency_injection.dart';
-import 'package:com_cingulo_sample/errors/base_error.dart';
-import 'package:com_cingulo_sample/errors/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -37,10 +35,8 @@ abstract class Bloc<T extends BlocState> with DisposeMixin, DependencyInjectionM
   void catchError(Future<void> Function() run) async {
     try {
       await run();
-    } on BaseError catch (error, stackTrace) {
-      states$$?.addError(error, stackTrace);
     } catch (error, stackTrace) {
-      ErrorHandler.handle(error, stackTrace: stackTrace);
+      states$$?.addError(error, stackTrace);
     }
   }
 }

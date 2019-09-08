@@ -1,7 +1,7 @@
-import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_router.dart';
-import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_router.dart';
-import 'package:com_cingulo_sample/screens/todo/todo_router.dart';
+import 'package:com_cingulo_sample/screens/accounts/accounts_router.dart';
+import 'package:com_cingulo_sample/screens/settings/settings_router.dart';
 import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
+import 'package:com_cingulo_sample/screens/todo/todo_router.dart';
 import 'package:fluro/fluro.dart';
 
 class AppRouter {
@@ -10,16 +10,16 @@ class AppRouter {
 
   static Router get router {
     if (!_initialized) {
-      _initialize();
+      _init();
     }
     return _router;
   }
 
-  static void _initialize() {
+  static void _init() {
     _initialized = true;
-    LogInRouter(_router);
+    AccountsRouter(_router);
+    SettingsRouter(_router);
     SplashRouter(_router);
-    SignUpRouter(_router);
     TodoRouter(_router);
   }
 }

@@ -17,6 +17,6 @@ class SignUpRouter {
   }
 
   static void navigate(BuildContext context) {
-    _router.navigateTo(context, route, transition: TransitionType.native);
+    _router.navigateTo(context, route, transition: TransitionType.fadeIn, clearStack: true);
   }
 }

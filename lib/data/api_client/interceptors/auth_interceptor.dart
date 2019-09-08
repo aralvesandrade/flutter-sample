@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 class AuthInterceptor extends Interceptor {
   @override
   onRequest(RequestOptions options) async {
-    final di = await AppDi.create();
+    final di = await AppDi.instance();
     final permission = await di.authRepository.getPermission();
     if (permission.isAuthenticated) {
       final authToken = await di.authRepository.getToken();

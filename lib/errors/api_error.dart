@@ -1,3 +1,1 @@
-import 'base_error.dart';
-
-class ApiError implements BaseError {}
+class ApiError implements Exception {}

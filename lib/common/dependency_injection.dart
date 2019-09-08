@@ -11,7 +11,7 @@ abstract class DependencyInjectionMixin {
 
   @protected
   Future<void> inject() async {
-    di = await AppDi.create();
+    di = await AppDi.instance();
     diReady();
   }
 

@@ -10,7 +10,7 @@ class SignUpFormBloc extends Bloc<SignUpFormBlocState> {
     catchError(() async {
       await di.accountsRepository.signUp(model);
       states$$?.add(SignUpFormBlocSuccess());
-      Analytics.log("email");
+      Analytics.log('SignUp: ${model.username}');
     });
   }
 }

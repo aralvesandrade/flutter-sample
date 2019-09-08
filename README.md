@@ -1,27 +1,61 @@
-Sample Flutter 
-========
+# Sample Flutter
 
-A flutter implementation with network call, error handling, streams, and BloC.
+[Some Screenshots Available Here](https://github.com/cingulo/flutter-sample/tree/develop/screenshots)
 
-API Docs
-========
+A fully working sample Flutter implementation featuring:
 
-Open <a href="https://api-sample.cingulo.com/docs">the docs URL<a/> in your browser. Or if you want take a look at API <a href="https://github.com/cingulo/api-sample">code<a/>.
+- Layers separation (data, domain, logic)
+- Network calls and very simple caching and concurrency mechanism
+- Generic error handling
+- Generic blocs
+- RxDart
+- Dependency injection
+- Authentication with JWT and daily renewal
+- Themes
+- Multiple languages
+- Named routes
+- Named routes with parameters
+- Analytics and pushes skeleton
+- We have published [the API](https://api-sample.cingulo.com/docs) so that you can test the app
+- Looks good but... it is still missing tests (TODO) :(
 
-Setup
-========
+# Setup
 
-It's using <a href="https://github.com/google/inject.dart"> Google Inject library</a> then it's necessary to download all submodules 
+This project uses [Google Inject library](https://github.com/google/inject.dart) so it's necessary to download all submodules.
 
-- If you are starting from scratch
+- If you are cloning for the first time
 
 ```
     $ git clone --recurse-submodules -j8 https://github.com/cingulo/flutter-sample.git
 ```
 
-- If you already clone but doent see submodules
+- If you already clone but does not see submodules
 
 ```
     $ git submodule init
     $ git submodule update
 ```
+
+- If that still does not work
+
+```
+    $ git submodule add https://github.com/google/inject.dart.git vendor/inject.dart
+```
+
+- At last, build the dependency injection
+
+```
+    $ flutter packages pub run build_runner build --delete-conflicting-outputs
+```
+
+- You can also use watch instead od build, but using watch is not necessary for most moments
+
+```
+    $ flutter packages pub run build_runner watch --delete-conflicting-outputs
+```
+
+- Done, you should now good to run the app.
+
+# API Docs
+
+Open [the docs URL](https://api-sample.cingulo.com/docs) in your browser. You can also check [the API GitHub repository](https://github.com/cingulo/api-sample).

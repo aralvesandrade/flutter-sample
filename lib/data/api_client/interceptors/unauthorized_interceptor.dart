@@ -1,4 +1,4 @@
-import 'package:com_cingulo_sample/data/api_client/errors/unauthorized_exception.dart';
+import 'package:com_cingulo_sample/data/api_client/errors/unauthorized_error.dart';
 import 'package:dio/dio.dart';
 
 class UnauthorizedInterceptor extends Interceptor {

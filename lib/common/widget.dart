@@ -27,7 +27,7 @@ abstract class StatefulWB<S extends StatefulWidget, B extends Bloc> extends Stat
 
   @protected
   @mustCallSuper
-  void onError(Object error) => ErrorHandler.handle(error);
+  void onError(Object error) => ErrorHandler.handle(error, context: context);
 }
 
 abstract class StatefulWBL<W extends StatefulWidget, B extends Bloc, L> extends StatefulWB<W, B> {

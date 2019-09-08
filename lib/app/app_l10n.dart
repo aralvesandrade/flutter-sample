@@ -1,8 +1,9 @@
 import 'package:com_cingulo_sample/common/l10n.dart';
-import 'package:com_cingulo_sample/screens/accounts/log_in/log_in_l10n.dart';
-import 'package:com_cingulo_sample/screens/accounts/sign_up/sign_up_l10n.dart';
+import 'package:com_cingulo_sample/errors/erros_l10n.dart';
+import 'package:com_cingulo_sample/screens/accounts/accounts_l10n.dart';
+import 'package:com_cingulo_sample/screens/settings/settings_l10n.dart';
 import 'package:com_cingulo_sample/screens/todo/todo_l10n.dart';
-import 'package:com_cingulo_sample/widgets/components/components_l10n.dart';
+import 'package:com_cingulo_sample/widgets/widgets_l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -13,8 +14,11 @@ enum _LKeys {
 
 class AppL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
+    L10n.enUS.toString(): {
+      _LKeys.title: "Cíngulo Flutter Sample",
+    },
     L10n.ptBR.toString(): {
-      _LKeys.title: "Cíngulo sample app",
+      _LKeys.title: "Exemplo em Flutter do Cíngulo",
     },
   };
 
@@ -33,10 +37,11 @@ class AppL10n {
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
     _AppL10nDelegate(),
-    ...ComponentsL10n.delegates,
-    SignUpL10n.delegate,
-    LogInL10n.delegate,
+    ...AccountsL10n.delegates,
+    ErrorsL10n.delegate,
+    SettingsL10n.delegate,
     ...TodoL10n.delegates,
+    WidgetsL10n.delegate,
   ];
 }
 

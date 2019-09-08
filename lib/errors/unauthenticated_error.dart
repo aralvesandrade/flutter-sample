@@ -1,3 +1,1 @@
-import 'base_error.dart';
-
-class UnauthenticatedError implements BaseError {}
+class UnauthenticatedError implements Exception {}

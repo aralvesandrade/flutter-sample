@@ -26,8 +26,7 @@ abstract class Repository with DisposableMixin, DependencyInjectionMixin {
   void diReady() async {
     final subsPermission = di.authRepository.permission$.listen(_onAuthPermission);
     final subsDaily = Refresh().daily$.listen((_) => onRefreshDaily());
-    final subsPeriodically = Refresh().periodically$.listen((_) => onRefreshPeriodically());
-    disposableFunctions.addAll([subsPermission.cancel, subsDaily.cancel, subsPeriodically.cancel]);
+    disposableFunctions.addAll([subsPermission.cancel, subsDaily.cancel]);
     await di.authRepository.initialized;
     postInit();
   }
@@ -48,7 +47,4 @@ abstract class Repository with DisposableMixin, DependencyInjectionMixin {
 
   @protected
   void onRefreshDaily() {}
-
-  @protected
-  void onRefreshPeriodically() {}
 }

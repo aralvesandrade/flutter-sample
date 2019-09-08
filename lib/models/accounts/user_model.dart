@@ -1,63 +1,62 @@
 import 'package:com_cingulo_sample/errors/model_error.dart';
 
 class UserModel {
-  int id;
-  String uuid;
+  String id;
+  String email;
   String fullName;
   String shortName;
-  UserGender gender;
-  String email;
-  String languageCode;
+  String username;
+  String language;
   String timeZone;
-  String abTest;
-  bool receiveEmails;
   bool isPremium;
   bool isStaff;
+  bool emailsSubscribed;
+  String platform;
 
+  String password;
   String checkPassword;
-  String newPassword;
 
   UserModel({
     this.id,
-    this.uuid,
+    this.email,
     this.fullName,
     this.shortName,
-    this.gender,
-    this.email,
-    this.languageCode,
+    this.username,
+    this.language,
     this.timeZone,
-    this.abTest,
-    this.receiveEmails,
     this.isPremium,
     this.isStaff,
+    this.emailsSubscribed,
+    this.platform,
+    this.password,
     this.checkPassword,
-    this.newPassword,
   });
 }
-
-enum UserGender { male, female, unknown }
 
 class UserModelError implements ModelError {
   @override
   final String generic;
-  final String fullName;
-  final String gender;
   final String email;
-  final String languageCode;
+  final String fullName;
+  final String username;
+  final String language;
   final String timeZone;
-  final String receiveEmails;
+  final String emailsSubscribed;
+  final String platform;
+
+  final String password;
   final String checkPassword;
-  final String newPassword;
 
   UserModelError({
     this.generic,
-    this.fullName,
-    this.gender,
     this.email,
-    this.languageCode,
+    this.fullName,
+    this.username,
+    this.language,
     this.timeZone,
-    this.receiveEmails,
+    this.emailsSubscribed,
+    this.platform,
+    this.password,
     this.checkPassword,
-    this.newPassword,
   });
 }

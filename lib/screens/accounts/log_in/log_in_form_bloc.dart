@@ -10,7 +10,7 @@ class LogInFormBloc extends Bloc<LogInFormBlocState> {
     catchError(() async {
       await di.accountsRepository.logIn(model);
       states$$?.add(LogInFormBlocSuccess());
-      Analytics.log('Log in ${model.email}');
+      Analytics.log('LogIn: ${model.username}');
     });
   }
 }

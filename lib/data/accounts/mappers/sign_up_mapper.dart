@@ -5,13 +5,13 @@ import 'package:com_cingulo_sample/models/accounts/sign_up_model.dart';
 class SignUpMapper {
   static SignUpRequest modelToRequest(SignUpModel model) {
     return SignUpRequest(
-      model.fullName,
-      model.username,
-      model.email,
-      model.password,
-      model.languageCode,
-      model.timeZone,
-      model.platform,
+      fullName: model.fullName,
+      username: model.username,
+      email: model.email,
+      password: model.password,
+      language: model.language,
+      timeZone: model.timeZone,
+      platform: model.platform,
     );
   }
 

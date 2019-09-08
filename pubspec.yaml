@@ -1,5 +1,5 @@
 name: com_cingulo_sample
-description: A new Flutter project.
+description: A flutter implementation with network call, error handling, streams, and BloC..
 
 version: 1.0.0+1
 
@@ -10,6 +10,7 @@ dependencies:
   analyzer: ^0.34.0
   flutter:
     sdk: flutter
+  pedantic: ^1.7.0
 
   # Dependency Injection
   build_runner: ^1.0.0
@@ -26,7 +27,7 @@ dependencies:
   # Navigation
   fluro: ^1.4.0
 
-  # Bloc implementation
+  # Rx
   rxdart: ^0.22.0
 
   # Network call
@@ -36,14 +37,7 @@ dependencies:
   shared_preferences: ^0.5.3
 
   # Access an external url by browser
-  url_launcher: ^5.1.1
-
-  # Distach share intent
-  share: ^0.6.2+1
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
+  url_launcher: ^5.1.2
 
 dev_dependencies:
   flutter_test:

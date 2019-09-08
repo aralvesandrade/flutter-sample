@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 class L10n {
-  static const Locale ptBR = Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR');
   static const Locale enUS = Locale.fromSubtags(languageCode: 'en', countryCode: 'US');
-  static const Locale esES = Locale.fromSubtags(languageCode: 'es', countryCode: 'ES');
+  static const Locale ptBR = Locale.fromSubtags(languageCode: 'pt', countryCode: 'BR');
 
-  static const List<Locale> locales = [ptBR];
+  static const List<Locale> locales = [enUS, ptBR];
 
   static bool isSupported(Locale locale) => locales.contains(locale);
 
-  static const Locale defaultLocale = ptBR;
+  static const Locale defaultLocale = enUS;
 }
 
 abstract class L10nDelegate<T> extends LocalizationsDelegate<T> {

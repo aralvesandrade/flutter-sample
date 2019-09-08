@@ -7,6 +7,8 @@ class SplashBloc extends Bloc<SplashBlocState> {
   @override
   void postInit() {
     catchError(() async {
+      // TODO: Just a simulation of a wait time. You should remove the next line in a real app.
+      await Future.delayed(Duration(seconds: 1));
       final permission = await di.authRepository.getPermission();
       if (permission.isAuthenticated) {
         states$$?.add(SplashBlocAuthenticated());

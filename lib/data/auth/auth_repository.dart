@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /*
  * This is the only repository that must not extend Repository because
- * Repository uses it for onAuthPermission, onRefreshDaily and onRefreshPeriodically.
+ * Repository uses it for onAuthPermission and onRefreshDaily.
  */
 class AuthRepository with DisposeMixin {
   static final String sharedPrefsAuthTokenKey = 'AuthRepository.authToken';

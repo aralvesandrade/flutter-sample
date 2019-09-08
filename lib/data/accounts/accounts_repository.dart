@@ -13,7 +13,6 @@ class AccountsRepository {
   final AuthRepository _authRepository;
 
   @provide
-  @singleton
   AccountsRepository(this._accountsApi, this._authRepository);
 
   Future<void> logIn(LogInModel logInModel) async {

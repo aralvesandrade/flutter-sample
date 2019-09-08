@@ -8,19 +8,20 @@ import 'app_di.inject.dart' as $gid;
 
 @Injector()
 abstract class AppDi {
-  CoreRepository get coreRepository;
-
   AuthRepository get authRepository;
+
+  CoreRepository get coreRepository;
 
   AccountsRepository get accountsRepository;
 
   TodoRepository get todoRepository;
 
-  static Future<AppDi> _created;
-  static void reset() => _created = null;
+  static Future<AppDi> _instance;
 
-  static Future<AppDi> create() {
-    _created ??= $gid.AppDi$Injector.create();
-    return _created;
+  static void reset() => _instance = null;
+
+  static Future<AppDi> instance() {
+    _instance ??= $gid.AppDi$Injector.create();
+    return _instance;
   }
 }

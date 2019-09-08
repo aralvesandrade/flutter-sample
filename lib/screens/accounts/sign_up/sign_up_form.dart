@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:com_cingulo_sample/common/widget.dart';
 import 'package:com_cingulo_sample/models/accounts/sign_up_model.dart';
 import 'package:com_cingulo_sample/screens/splash/splash_router.dart';
-import 'package:com_cingulo_sample/widgets/components/components.dart';
-import 'package:com_cingulo_sample/widgets/styles/styles.dart';
+import 'package:com_cingulo_sample/widgets/buttons.dart';
+import 'package:com_cingulo_sample/widgets/fields.dart';
 import 'package:flutter/material.dart';
 
 import 'sign_up_form_bloc.dart';
@@ -12,10 +12,10 @@ import 'sign_up_l10n.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => SignUpFormState();
+  State<StatefulWidget> createState() => _SignUpFormState();
 }
 
-class SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n> {
+class _SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n> {
   @override
   final SignUpFormBloc bloc = SignUpFormBloc();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -64,13 +64,13 @@ class SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n
       setState(() {
         _isProcessing = true;
         final model = SignUpModel(
-          _fullNameController.value.text,
-          _usernameController.value.text,
-          _emailController.value.text,
-          _passwordController.value.text,
-          SignUpModel.languageCodePtBr,
-          SignUpModel.timeZoneASP,
-          Platform.isAndroid ? SignUpModel.platformAndroid : SignUpModel.platformIOS,
+          username: _usernameController.value.text,
+          fullName: _fullNameController.value.text,
+          email: _emailController.value.text,
+          password: _passwordController.value.text,
+          language: SignUpModel.languageEnUs, // TODO: remove hardcoded entry
+          timeZone: SignUpModel.timeZoneASP, // TODO: remove hardcoded entry
+          platform: Platform.isAndroid ? SignUpModel.platformAndroid : SignUpModel.platformIOS,
         );
         bloc.signUp(model);
       });
@@ -120,20 +120,12 @@ class SignUpFormState extends StatefulWBL<SignUpForm, SignUpFormBloc, SignUpL10n
             textInputAction: TextInputAction.done,
             onFieldSubmitted: (_) => _onSubmit(),
           ),
-          _signUpModelError?.generic == null
-              ? Container()
-              : Text(
-                  _signUpModelError?.generic,
-                  textAlign: TextAlign.center,
-                  style: TextStyles.SansError,
-                ),
-          Container(
-            margin: EdgeInsets.only(top: 16),
-            child: ButtonPrimary(
-              text: l10n.formSubmit,
-              onPressed: _onSubmit,
-              disabled: _isProcessing,
-            ),
+          Container(height: 24),
+          ButtonPrimary(
+            text: l10n.formSubmit,
+            onPressed: _onSubmit,
+            disabled: _isProcessing,
+            themeData: Theme.of(context),
           ),
         ],
       ),

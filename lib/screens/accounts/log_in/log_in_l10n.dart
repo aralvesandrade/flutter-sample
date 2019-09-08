@@ -4,34 +4,31 @@ import 'package:flutter/material.dart';
 
 enum _LKeys {
   title,
-  passwordRecovery,
-  divider,
-  signUp,
-  formEmail,
+  formUsername,
   formPassword,
   formSubmit,
 }
 
 class LogInL10n {
   static final Map<String, Map<_LKeys, String>> _localizedValues = {
+    L10n.enUS.toString(): {
+      _LKeys.title: "Log In",
+      _LKeys.formUsername: "Username or email",
+      _LKeys.formPassword: "Password",
+      _LKeys.formSubmit: "Log In",
+    },
     L10n.ptBR.toString(): {
-      _LKeys.title: "Vamos começar?",
-      _LKeys.formEmail: "Email",
+      _LKeys.title: "Acesse",
+      _LKeys.formUsername: "Nome de usuário ou email",
       _LKeys.formPassword: "Senha",
-      _LKeys.formSubmit: "Entrar",
-      _LKeys.passwordRecovery: "Esqueceu sua senha?",
-      _LKeys.divider: "ou",
-      _LKeys.signUp: "Criar nova conta",
+      _LKeys.formSubmit: "Acessar",
     },
   };
 
   String get title => _localizedValues[locale.toString()][_LKeys.title];
-  String get formEmail => _localizedValues[locale.toString()][_LKeys.formEmail];
+  String get formUsername => _localizedValues[locale.toString()][_LKeys.formUsername];
   String get formPassword => _localizedValues[locale.toString()][_LKeys.formPassword];
   String get formSubmit => _localizedValues[locale.toString()][_LKeys.formSubmit];
-  String get passwordRecovery => _localizedValues[locale.toString()][_LKeys.passwordRecovery];
-  String get divider => _localizedValues[locale.toString()][_LKeys.divider];
-  String get signUp => _localizedValues[locale.toString()][_LKeys.signUp];
 
   final Locale locale;
 
