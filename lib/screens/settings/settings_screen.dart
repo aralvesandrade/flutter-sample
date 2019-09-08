@@ -21,7 +21,7 @@ class _SettingsState extends StatefulWBL<SettingsScreen, SettingsBloc, SettingsL
   @override
   void initState() {
     super.initState();
-    disposableFunctions.add(bloc.states$.listen(_onData).cancel);
+    bloc.states$.listen(_onData);
   }
 
   void _onData(SettingsBlocState state) {
