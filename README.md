@@ -1,13 +1,14 @@
-# Sample Flutter
+# Cíngulo Flutter Sample
 
-[Some Screenshots Available Here](https://github.com/cingulo/flutter-sample/tree/develop/screenshots)
+[Checkout some screenshots here.](https://github.com/cingulo/flutter-sample/tree/develop/screenshots)
 
 A fully working sample Flutter implementation featuring:
 
 - Layers separation (data, domain, logic)
 - Network calls and very simple caching and concurrency mechanism
 - Generic error handling
-- Generic blocs
+- Forms validation
+- Generic bloc structure
 - RxDart
 - Dependency injection
 - Authentication with JWT and daily renewal
