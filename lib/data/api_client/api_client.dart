@@ -4,6 +4,7 @@ import 'package:com_cingulo_sample/data/api_client/errors/unauthorized_error.dar
 import 'package:com_cingulo_sample/data/api_client/interceptors/auth_interceptor.dart';
 import 'package:com_cingulo_sample/data/api_client/interceptors/bad_request_interceptor.dart';
 import 'package:com_cingulo_sample/data/api_client/interceptors/internal_server_error_interceptor.dart';
+import 'package:com_cingulo_sample/data/api_client/interceptors/language_interceptor.dart';
 import 'package:com_cingulo_sample/data/api_client/interceptors/unauthorized_interceptor.dart';
 import 'package:com_cingulo_sample/env.dart';
 import 'package:com_cingulo_sample/errors/api_error.dart';
@@ -20,6 +21,7 @@ class ApiClient {
     _apiDio.options.baseUrl = Env.data.apiBaseUrl;
     _apiDio.options.connectTimeout = Duration(minutes: 3).inMilliseconds;
     _apiDio.options.receiveTimeout = Duration(minutes: 3).inMilliseconds;
+    _apiDio.interceptors.add(LanguageInterceptor());
     _apiDio.interceptors.add(InternalServerErrorInterceptor());
     _apiDio.interceptors.add(AuthInterceptor());
     _apiDio.interceptors.add(UnauthorizedInterceptor());

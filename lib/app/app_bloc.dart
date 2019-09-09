@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:com_cingulo_sample/common/l10n.dart';
 import 'package:com_cingulo_sample/themes/sample_theme_light.dart';
 import 'package:flutter/material.dart';
@@ -14,20 +12,9 @@ class AppBloc {
   factory AppBloc() => _singleton;
 
   static final initialState = AppState(
-    _getPlatformLocale(),
+    L10n.getPlatformLocale(),
     SampleThemeLight.themeData,
   );
-
-  static Locale _getPlatformLocale() {
-    final List<String> codes = Platform.localeName.split('_');
-    if (codes.length == 2) {
-      return Locale(codes[0], codes[1]);
-    } else if (codes.length == 1) {
-      return Locale(codes[0]);
-    } else {
-      return L10n.defaultLocale;
-    }
-  }
 
   final BehaviorSubject<AppState> _states$$ = BehaviorSubject<AppState>.seeded(initialState);
   Stream<void> get states$ => _states$$.stream;

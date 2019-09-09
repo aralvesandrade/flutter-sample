@@ -2,9 +2,9 @@
 
 [Checkout some screenshots here.](https://github.com/cingulo/flutter-sample/tree/develop/screenshots)
 
-A fully working sample Flutter implementation featuring:
+A fully working sample Flutter implementation. Give this repo a Star if you like it :)
 
-- Layers separation (data, domain, logic)
+- Layers separation (data, domain, logic, ui)
 - Network calls and very simple caching and concurrency mechanism
 - Generic error handling
 - Forms validation
